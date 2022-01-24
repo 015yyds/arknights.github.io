@@ -32,10 +32,10 @@ function init() {
     gameInit();
     var username = cookie("username");
     var message = cookie("message");
-    if (username){
+    if (username) {
         document.getElementById("username").value = username;
     }
-    if (message){
+    if (message) {
         document.getElementById("message").value = message;
     }
     window.addEventListener('resize', refreshSize, false);
@@ -145,15 +145,11 @@ function gameOver() {
 }
 
 
-function encrypt(text){
-	var encrypt = new JSEncrypt();
+function encrypt(text) {
+    var encrypt = new JSEncrypt();
     encrypt.setPublicKey("MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDTzGwX6FVKc7rDiyF3H+jKpBlRCV4jOiJ4JR33qZPVXx8ahW6brdBF9H1vdHBAyO6AeYBumKIyunXP9xzvs1qJdRNhNoVwHCwGDu7TA+U4M7G9FArDG0Y6k4LbS0Ks9zeRBMiWkW53yQlPshhtOxXCuZZOMLqk1vEvTCODYYqX5QIDAQAB");
     var data = encrypt.encrypt(text);
     return data;
-  }
-
-function SubmitResults() {
-    alert('暂不提供此功能。')
 }
 
 function gameTime() {
@@ -169,7 +165,7 @@ function gameTime() {
 }
 
 function creatTimeText(n) {
-    return '&nbsp;TIME:'+n;
+    return '&nbsp;TIME:' + n;
 }
 var _ttreg = / t{1,2}(\d+)/,
     _clearttClsReg = / t{1,2}\d+| bad/;
@@ -288,11 +284,11 @@ function showGameScoreLayer() {
     var c = document.getElementById(_gameBBList[_gameBBListIndex - 1].id).className.match(_ttreg)[1];
     l.className = l.className.replace(/bgc\d/, 'bgc' + c);
     document.getElementById('GameScoreLayer-text').innerHTML = shareText(_gameScore);
-    var score_text='得分&nbsp;&nbsp;';
-    score_text+=deviation_time<23000?_gameScore:"<span style='color:red;'>"+_gameScore+"</span>";
+    var score_text = '得分&nbsp;&nbsp;';
+    score_text += deviation_time < 23000 ? _gameScore : "<span style='color:red;'>" + _gameScore + "</span>";
     document.getElementById('GameScoreLayer-score').innerHTML = score_text;
     var bast = cookie('bast-score');
-    if(deviation_time<23000){
+    if (deviation_time < 23000) {
         if (!bast || _gameScore > bast) {
             bast = _gameScore;
             cookie('bast-score', bast, 100);
@@ -324,7 +320,6 @@ function shareText(score) {
     if (deviation_time > 23000) {
         return '倒计时多了' + ((deviation_time / 1000) - 20).toFixed(2) + "s";
     }
-    SubmitResults();
     if (score <= 49) return '试着好好练一下？';
     if (score <= 99) return 'TCL';
     if (score <= 149) return 'TQL';
@@ -385,12 +380,12 @@ function isnull(val) {
     }
 }
 function goRank() {
-    var name=document.getElementById("username").value;
-    var link='./rank.php';
-    if(!isnull(name)){
-        link+="?name="+name;
+    var name = document.getElementById("username").value;
+    var link = './rank.php';
+    if (!isnull(name)) {
+        link += "?name=" + name;
     }
-    window.location.href=link;
+    window.location.href = link;
 }
 console.log("不修改，好嘛？乱传又有什么用呢？(ˉ▽ˉ；)...")
 document.onkeydown = function (e) {
